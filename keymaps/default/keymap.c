@@ -25,10 +25,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                       └───┘   └───┘
      */
     [_BASE] = LAYOUT_split_3x6_5(
-        KC_ESC,   KC_Q,         KC_W,         KC_E,         KC_R,     KC_T,                     KC_Y,     KC_U,   KC_I,         KC_O,         KC_P,            KC_BSPC,
-        KC_TAB,  LCTL_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), KC_F,     KC_G,                     KC_H,     KC_J,   RALT_T(KC_K), RSFT_T(KC_L), RCTL_T(KC_SCLN),  KC_QUOT,
-        KC_CAPS,  KC_Z,         KC_X,         KC_C,         KC_V,     KC_B,                     KC_N,     KC_M,   KC_COMM,      KC_DOT,       KC_SLSH,         KC_BSLS,
-                  KC_LCTL,      KC_LCTL,      MO(_LOWER),   KC_SPC,   KC_LGUI,                  KC_RGUI,  KC_ENT, MO(_RAISE),   KC_RCTL,      KC_RCTL
+        KC_ESC,   KC_Q,         KC_W,         KC_E,         KC_R,          KC_T,                     KC_Y,     KC_U,          KC_I,         KC_O,         KC_P,            KC_BSPC,
+        KC_TAB,  LCTL_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D),  LGUI_T(KC_F),  KC_G,                     KC_H,     RGUI_T(KC_J),  RALT_T(KC_K), RSFT_T(KC_L), RCTL_T(KC_SCLN),  KC_QUOT,
+        KC_CAPS,  KC_Z,         KC_X,         KC_C,         KC_V,          KC_B,                     KC_N,     KC_M,          KC_COMM,      KC_DOT,       KC_SLSH,         KC_BSLS,
+                  KC_LCTL,      KC_LCTL,      MO(_LOWER),   KC_SPC,        KC_LGUI,                  KC_RGUI,  KC_ENT,        MO(_RAISE),   KC_RCTL,      KC_RCTL
     ),
 
     [_RAISE] = LAYOUT_split_3x6_5(
