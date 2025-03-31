@@ -41,15 +41,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMS] = LAYOUT_split_3x6_5(
-        KC_GRV,  KC_0,             KC_9,         KC_8,         KC_7,         KC_TRNS,                   KC_PLUS,    KC_LPRN,          KC_RPRN,          KC_SCLN,         KC_COLN,          KC_SLSH,
-        KC_TRNS, LCTL_T(KC_TRNS),  LSFT_T(KC_6), LALT_T(KC_5), LGUI_T(KC_4), KC_TRNS,                   KC_MINS,    RGUI_T(KC_LBRC),  RALT_T(KC_RBRC),  RSFT_T(KC_EQL),  RCTL_T(KC_QUOT),  KC_DQT,
+        KC_GRV,  KC_0,             KC_9,         KC_8,         KC_7,         KC_TRNS,                   KC_PLUS,    KC_LPRN,          KC_RPRN,          KC_SCLN,         KC_SLSH,          KC_TRNS,
+        KC_TRNS, LCTL_T(KC_TRNS),  LSFT_T(KC_6), LALT_T(KC_5), LGUI_T(KC_4), KC_TRNS,                   KC_MINS,    RGUI_T(KC_LBRC),  RALT_T(KC_RBRC),  RSFT_T(KC_EQL),  CTL_T(KC_COLN),  KC_DQT,
         KC_TRNS, KC_TRNS,          KC_3,         KC_2,         KC_1,         KC_TRNS,                   KC_UNDS,    KC_LCBR,          KC_RCBR,          KC_LT,           KC_GT,            KC_TRNS,
                  KC_TRNS,          MO(_NUMS),      KC_TRNS,    KC_TRNS,      QK_BOOT,                   KC_TRNS,    KC_TRNS,          MO(_NAV),         KC_TRNS,         KC_TRNS
     ),
 
     [_SHIFTED_NUMS] = LAYOUT_split_3x6_5(
-        KC_TILD,  KC_RPRN,  KC_LPRN,  KC_ASTR,            KC_AMPR,        KC_TRNS,                   KC_PLUS,  KC_LPRN,          KC_RPRN,          KC_SCLN,         KC_COLN,          KC_SLSH,
-        KC_TRNS,  KC_TRNS,  KC_CIRC,  KC_PERC,            KC_DLR,         KC_TRNS,                   KC_MINS,  RGUI_T(KC_LBRC),  RALT_T(KC_RBRC),  RSFT_T(KC_EQL),  RCTL_T(KC_QUOT),  KC_DQT,
+        KC_TILD,  KC_RPRN,  KC_LPRN,  KC_ASTR,            KC_AMPR,        KC_TRNS,                   KC_PLUS,  KC_LPRN,          KC_RPRN,          KC_SCLN,         KC_SLSH,          KC_TRNS,
+        KC_TRNS,  KC_TRNS,  KC_CIRC,  KC_PERC,            KC_DLR,         KC_TRNS,                   KC_MINS,  RGUI_T(KC_LBRC),  RALT_T(KC_RBRC),  RSFT_T(KC_EQL),  CTL_T(KC_COLN),  KC_DQT,
         KC_TRNS,  KC_TRNS,  KC_HASH,  KC_AT,              KC_EXLM,        KC_TRNS,                   KC_UNDS,  KC_LCBR,          KC_RCBR,          KC_LT,           KC_GT,            KC_TRNS,
                   KC_TRNS,  KC_TRNS,  MO(_SHIFTED_NUMS),  KC_TRNS,        QK_BOOT,                   KC_TRNS,  KC_TRNS,          MO(_NAV),         KC_TRNS,         KC_TRNS
     ),
@@ -66,6 +66,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _NUMS, _NAV, _ADJUST);
     state = update_tri_layer_state(state, _SHIFTED_NUMS, _NAV, _ADJUST);
     return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CTL_T(KC_COLN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_COLN); // Send KC_COLN on tap
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+    }
+    return true;
 }
 
 /*
